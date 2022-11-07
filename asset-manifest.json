@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/ColorPaletteMaker/static/css/main.9edeba61.css",
+    "main.js": "/ColorPaletteMaker/static/js/main.a111dc6f.js",
+    "static/js/787.f5508eca.chunk.js": "/ColorPaletteMaker/static/js/787.f5508eca.chunk.js",
+    "index.html": "/ColorPaletteMaker/index.html",
+    "static/media/warning.svg": "/ColorPaletteMaker/static/media/warning.5d2504db5c8406c87c11.svg",
+    "main.9edeba61.css.map": "/ColorPaletteMaker/static/css/main.9edeba61.css.map",
+    "main.a111dc6f.js.map": "/ColorPaletteMaker/static/js/main.a111dc6f.js.map",
+    "787.f5508eca.chunk.js.map": "/ColorPaletteMaker/static/js/787.f5508eca.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9edeba61.css",
+    "static/js/main.a111dc6f.js"
+  ]
+}
