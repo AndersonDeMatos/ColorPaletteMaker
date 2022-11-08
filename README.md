@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+# Color Palette Maker.
+
+[Color palette Maker](https://andersondematos.github.io/ColorPaletteMaker/) is a tool created to help disigners, developers, pixel artists and any kind of digital artists to create color palettes and dowload them in PNG or JSON file.
+
+## How it works.
+
+Choose a "left color" and a "right color", the amount of colors you want in the color swatch and the application will create the intermediary colors between both colors taking in account the hue, saturation, lightness and alpha values.
+
+The position of the handle of the "hight color" slider matters.
+A swatch of 5 colors going from a dark blue (H: 240, S: 100, L: 13, A: 100) to a light yellow (H:60, S: 93, L: 70, A: 100), with the handle of the 'right color' to the left of the center of the slider:
+<a href="https://imgur.com/E2qRcQx"><img src="https://i.imgur.com/E2qRcQx.png" title="source: imgur.com" /></a>
+
+And here the same same two mais colors, but with the handle on the opposite side of from the center the slider:
+<a href="https://imgur.com/Ktvk2g2"><img src="https://i.imgur.com/Ktvk2g2.png" title="source: imgur.com" /></a>
+
+Once you are satified with the colors generated, click the "Add yo palette" button to add them to the color palette. By default, the colors that are repeated in the color watch or in the color palette will not be added the the color palette.
+You can add, select, move and delete colors to organize the color palette.
+<a href="https://imgur.com/dGgy8Op"><img src="https://i.imgur.com/dGgy8Op.png" title="source: imgur.com" /></a>
+
+Click the download icon button at the top right of the page to open a popup where you can see a preview of the PNG file and the buttons to downlod the palette in PNG o JSON format.  
+<a href="https://imgur.com/E9JMdGH"><img src="https://i.imgur.com/E9JMdGH.png" title="source: imgur.com" /></a>
+
+Even though this is not the best use case, it is even possible to use the Color Palette Maker to create small pixel arts (limited to 32x32 pixel in scale 1:1, or any resolution limited to 32 pixel in width, where width * height is less than or equal to 1024 pixels). 
+<a href="https://imgur.com/WV997IC"><img src="https://i.imgur.com/WV997IC.png" title="source: imgur.com" /></a>
+
+## The JSON file.
+This is how a 'pretty print' of a downloaded JSON file with only two colors will look:
+```
+[
+  [
+    {
+      "RGBA": {
+        "r": 162,
+        "g": 179,
+        "b": 50,
+        "a": 255
+      }
+    },
+    {
+      "HSLA": {
+        "h": 68,
+        "s": 56,
+        "l": 45,
+        "a": 100
+      }
+    },
+    {
+      "HEX": "a2b332ff"
+    }
+  ],
+  [
+    {
+      "RGBA": {
+        "r": 18,
+        "g": 51,
+        "b": 84,
+        "a": 255
+      }
+    },
+    {
+      "HSLA": {
+        "h": 210,
+        "s": 65,
+        "l": 20,
+        "a": 100
+      }
+    },
+    {
+      "HEX": "123354ff"
+    }
+  ]
+]
+```
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
