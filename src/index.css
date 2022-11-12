@@ -1,0 +1,752 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+:root {
+  --fontIconColor: white;
+  --accentColor: hsl(60, 100%, 60%);
+  --tint: 240;
+  --background: hsl(var(--tint), 12%, 10%);
+  --innerBackground: hsl(var(--tint), 9%, 15%);
+  --panel: hsl(var(--tint), 6%, 20%);
+  --button: hsl(var(--tint), 3%, 50%);
+  --inputBlocker: rgba(0, 0, 0, 0.7);
+  --leftHue: 0;
+  --leftSaturation: 100%;
+  --leftLightness: 50%;
+  --leftAlpha: 1;
+  --rightHue: 0;
+  --rightSaturation: 100%;
+  --rightLightness: 50%;
+  --rightAlpha: 1;
+  --smallRoundCorner: 4px;
+  --midRoundCorner: 8px;
+  --defaultPadding: 8px;
+  --defaultMargin: 8px;
+  --columnCount: 6;
+  --sampleSize: 1.25rem;
+  --columnRowSize: calc(var(--sampleSize) + 2px);
+  --conditionalCursor: default;
+  font-size: 16px;
+  background-color: var(--background);
+  font-family: 'Noto Sans', sans-serif;
+  scrollbar-width: thick;
+  scrollbar-color: var(--accentColor) rgba(25, 25, 25, 0.5);
+  accent-color: var(--accentColor);
+}
+
+
+.Text {
+  color: var(--fontIconColor);
+}
+
+label:hover,
+.Ticked {
+  cursor: pointer;
+  text-shadow: 0 0 0.5rem var(--accentColor);
+}
+
+.Ticked {
+  color: var(--accentColor);
+  cursor: pointer;
+}
+
+.textButton {
+  height: var(--columnRowSize);
+  border: none;
+  border-radius: var(--smallRoundCorner);
+  font-family: 'Poppins', sans-serif;
+  padding: 0px var(--defaultPadding);
+  text-align: center;
+  justify-content: center;
+}
+
+.iconButton {
+  color: var(--fontIconColor);
+  text-align: center;
+  font-size: 1.5rem;
+  background-color: transparent;
+  border: none;
+}
+
+.iconButton:active {
+  cursor: pointer;
+  color: var(--accentColor);
+}
+
+.textButton {
+  background-color: var(--button);
+  color: var(--fontIconColor)
+}
+
+.textButton:hover {
+  cursor: pointer;
+  box-shadow: 0 0 0.5rem var(--accentColor);
+}
+
+.textButton:active {
+  cursor: pointer;
+  color: black;
+  background-color: var(--accentColor);
+}
+
+.textButton:hover,
+.iconButton:hover {
+  cursor: pointer;
+}
+
+.iconButton:hover {
+  text-shadow: 0 0 0.5rem var(--accentColor);
+}
+
+.iconButton:disabled {
+  color: var(--fontIconColor);
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+}
+
+.TooltipContainer {
+  display: flex;
+}
+
+.Tooltip {
+  position: absolute;
+  z-index: 10;
+  margin: var(--defaultMargin);
+  visibility: hidden;
+  font-size: 0.8rem;
+  background-color: var(--inputBlocker);
+  backdrop-filter: blur(4px);
+  border-radius: var(--midRoundCorner);
+  padding: var(--defaultPadding);
+  max-width: 200px;
+  outline: 1px solid var(--accentColor);
+}
+
+.TooltipText {
+  color: white;
+}
+
+.TooltipContainer .TooltipAbove::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: var(--accentColor) transparent transparent transparent;
+}
+
+.TooltipContainer .TooltipBellow::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent var(--accentColor) transparent;
+}
+
+.TooltipAbove {
+  transform: translatey(calc(-100% - 2rem));
+}
+
+.TooltipBellow {
+  transform: translate(calc(-50% + 4px), 2.5rem);
+}
+
+#undoContainer:hover #undoTooltip,
+#redoContainer:hover #redoTooltip,
+#downloadContainer:hover #downloadTooltip,
+#allowRepeatedContainer:hover #allowRepeatedTooltip,
+#colorCountContainer:hover #colorCountTooltip,
+#addToPaletteContainer:hover #addToPaletteTooltip,
+#warningContainer:hover #warningTooltip,
+#editSelectedContainer:hover #editSelectedTooltip,
+#columnCountContainer:hover #columnCountTooltip,
+#paletteContainer:hover #paletteToolTip {
+  visibility: visible;
+  transition: visibility 0s linear 2s;
+}
+
+#allowRepeatedTooltip {
+  transform: translate(0px, 2rem);
+}
+
+#colorCountTooltip {
+  transform: translate(1rem, 2rem);
+}
+
+#addToPaletteTooltip {
+  transform: translate(-28%, 2rem);
+}
+
+#warningTooltip {
+  transform: translate(calc(-50% + 4px), 2rem);
+}
+
+#editSelectedTooltip {
+  transform: translate(-6px, 2rem);
+}
+
+#columnCountTooltip {
+  transform: translate(-8%, 2rem);
+}
+
+#paletteToolTip {
+  max-width: none;
+  align-self: center;
+}
+
+#top {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  padding-top: var(--defaultPadding);
+  gap: var(--defaultMargin);
+}
+
+#header {
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+}
+
+#headerLeft,
+#headerRight {
+  display: flex;
+  gap: var(--defaultMargin);
+  align-items: center;
+}
+
+#headerRight {
+  justify-content: flex-end;
+}
+
+#bottom {
+  margin: var(--defaultMargin);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 60%;
+  gap: var(--defaultMargin);
+  overflow: auto;
+}
+
+#inputBlocker {
+  visibility: hidden;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  z-index: 2;
+  background-color: var(--inputBlocker);
+  backdrop-filter: blur(4px);
+  overflow: auto;
+}
+
+#popupPanel {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--panel);
+  border-radius: var(--midRoundCorner);
+  padding: var(--defaultPadding);
+}
+
+#popupInnerPanel {
+  margin-top: var(--defaultMargin);
+  background-color: var(--background);
+  border-radius: var(--smallRoundCorner);
+}
+
+#popupContent {
+  margin: var(--defaultMargin);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--defaultMargin);
+}
+
+#imagePreview {
+  padding: var(--defaultPadding);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--defaultMargin);
+  border-radius: var(--smallRoundCorner);
+  background-color: var(--innerBackground);
+}
+
+#previewSizeGroup {
+  margin-top: var(--defaultMargin);
+}
+
+#canvasArea {
+  max-width: 90vw;
+  max-height: 75vh;
+  overflow: auto;
+}
+
+#previewCanvas {
+  background-image: url("../public/checkerboard.png");
+}
+
+.panel {
+  border-radius: var(--midRoundCorner);
+  padding: var(--defaultPadding);
+  background-color: var(--panel);
+}
+
+.buttonsGroup,
+.inputGroup {
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.buttonsGroup {
+  gap: 3rem;
+}
+
+.inputGroup {
+  gap: var(--defaultMargin);
+}
+
+#title {
+  font-size: 1.5rem;
+  font-size: 1.5rem;
+}
+
+#maxSlotCount {
+  text-align: right;
+}
+
+#miniPaletteContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--defaultMargin);
+  max-width: calc(100% - calc(var(--defaultMargin) * 2));
+  margin: 0px auto;
+}
+
+#paletteContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--defaultMargin);
+  margin: 0 auto;
+}
+
+.MiniPalette,
+.colorPalette {
+  padding: 2px;
+  background-color: var(--innerBackground);
+  border-radius: var(--smallRoundCorner);
+}
+
+.MiniPalette {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+}
+
+.colorPalette {
+  display: grid;
+  grid-template-columns: repeat(var(--columnCount), var(--columnRowSize));
+  grid-template-rows: var(--columnRowSize);
+  gap: 4px;
+}
+
+.SampleBackground {
+  height: var(--sampleSize);
+  width: var(--sampleSize);
+  border: 1px solid white;
+  outline: 1px solid black;
+  border-radius: var(--smallRoundCorner);
+  background-image: url("../public/checkerboard.png");
+}
+
+.SampleColor,
+.sampleButton {
+  height: 100%;
+  width: 100%;
+  border-radius: var(--smallRoundCorner);
+}
+
+.SampleColor {
+  cursor: not-allowed;
+}
+
+.sampleButton:hover {
+  transform: translate(-1px, -2px);
+  border: 1px solid black;
+  outline: 1px solid var(--accentColor);
+  box-shadow: 0 0 0.5rem var(--accentColor);
+  cursor: var(--conditionalCursor);
+}
+
+.selected {
+  transform: translate(-1px, -2px);
+  border: 1px solid black;
+  outline: 2px solid var(--accentColor);
+  border-radius: 0px;
+}
+
+.AccentText {
+  color: var(--accentColor);
+}
+
+#slidersAndNames {
+  display: grid;
+  grid-template-columns: auto 6.25rem auto;
+  grid-gap: var(--defaultMargin);
+}
+
+#leftValues,
+#rightValues,
+#valueNames {
+  display: grid;
+  grid-template-rows: var(--columnRowSize);
+  gap: var(--defaultMargin);;
+}
+
+#leftValues {
+  grid-template-columns: auto 3.125rem;
+}
+
+#leftValues,
+#rightValues {
+  width: 100%;
+}
+
+#rightValues {
+  grid-template-columns: 3.125rem auto;
+}
+
+#valueNames {
+  width: 6.25rem;
+  font-size: 1rem;
+}
+
+.valueConteiner {
+  width: 100%;
+  display: flex;
+}
+
+.CenteredText {
+  margin: auto;
+  text-align: center;
+}
+
+#leftColor {
+  display: flex;
+  gap: var(--defaultMargin);
+  justify-self: left;
+}
+
+#rightColor {
+  margin-right: var(--defaultMargin);
+  justify-self: right;
+}
+
+#warning {
+  height: 1.5rem;
+  width: 1.5rem;
+  background-image: url(../public/warning.svg);
+}
+
+#warning:hover {
+  border-radius: var(--smallRoundCorner);
+  box-shadow: 0 0 0.5rem var(--accentColor);
+}
+
+.SpinBox,
+.hexValue,
+.optionButton {
+  border-radius: var(--smallRoundCorner);
+  text-align: center;
+  height: var(--columnRowSize);
+  border: none;
+}
+
+.SpinBox:hover,
+.hexValue:hover,
+.optionButton:hover,
+.Checkbox:hover {
+  box-shadow: 0 0 0.5rem var(--accentColor);
+}
+
+.SpinBox:disabled,
+.hexValue:disabled,
+.optionButton:disabled,
+.Checkbox:disabled {
+  box-shadow: none;
+}
+
+#leftHexValue {
+  margin-left: -3rem;
+}
+
+#rightHexValue {
+  margin-right: -3rem;
+}
+
+#MiniPaletteCount,
+#columnCount {
+  width: 3rem;
+  margin: center;
+}
+
+.colorSlider {
+    align-self: center;
+	width: 100%;
+	height: 8px;
+	border-radius: 4px;
+	background-image: url("../public/checkerboard.png");
+}
+
+.leftHueSliderTrack-0,
+.leftSaturationSliderTrack-0,
+.leftLightnessSliderTrack-0,
+.leftAlphaSliderTrack-0,
+.rightHueSliderTrack-0,
+.rightSaturationSliderTrack-0,
+.rightLightnessSliderTrack-0,
+.rightAlphaSliderTrack-0 {
+	width: 100%;
+	height: 100%;
+	border-radius: 4px;
+	outline: 1px solid black;
+	box-shadow: 0px 0px 0px 3px white;
+}
+
+.leftHueSliderThumb-0,
+.leftSaturationSliderThumb-0,
+.leftLightnessSliderThumb-0,
+.leftAlphaSliderThumb-0,
+.rightHueSliderThumb-0,
+.rightSaturationSliderThumb-0,
+.rightLightnessSliderThumb-0,
+.rightAlphaSliderThumb-0 {
+	width: 8px;
+	height: 8px;
+	border-radius: 4px;
+	outline: 1px solid black;
+	box-shadow: 0px 0px 0px 3px white;
+}
+
+.colorSlider:hover .leftHueSliderThumb-0,
+.colorSlider:active .leftHueSliderThumb-0,
+.colorSlider:hover .leftSaturationSliderThumb-0,
+.colorSlider:active .leftSaturationSliderThumb-0,
+.colorSlider:hover .leftLightnessSliderThumb-0,
+.colorSlider:active .leftLightnessSliderThumb-0,
+.colorSlider:hover .leftAlphaSliderThumb-0,
+.colorSlider:active .leftAlphaSliderThumb-0,
+.colorSlider:hover .rightHueSliderThumb-0,
+.colorSlider:active .rightHueSliderThumb-0,
+.colorSlider:hover .rightSaturationSliderThumb-0,
+.colorSlider:active .rightSaturationSliderThumb-0,
+.colorSlider:hover .rightLightnessSliderThumb-0,
+.colorSlider:active .rightLightnessSliderThumb-0,
+.colorSlider:hover .rightAlphaSliderThumb-0,
+.colorSlider:active .rightAlphaSliderThumb-0 {
+	box-shadow: 0px 0px 0px 1px white;
+    box-shadow: 0px 0px 0px 2px white;
+	transform: scale(2);
+}
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: auto;
+  height: 8px;
+  border-radius: var(--smallRoundCorner);
+  border: 1px solid white;
+  outline: 1px solid black;
+  width: 100%;
+  background-image: url("../public/checkerboard.png");
+}
+
+.colorSlider:hover {
+  cursor: pointer;
+}
+
+.colorSlider:hover:disabled {
+  cursor: default;
+}
+
+.colorSlider.disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.leftHueSliderTrack {
+  background: linear-gradient(
+    to right,
+    hsl(0, var(--leftSaturation), var(--leftLightness)),
+    hsl(60, var(--leftSaturation), var(--leftLightness)),
+    hsl(120, var(--leftSaturation), var(--leftLightness)),
+    hsl(180, var(--leftSaturation), var(--leftLightness)),
+    hsl(240, var(--leftSaturation), var(--leftLightness)),
+    hsl(300, var(--leftSaturation), var(--leftLightness)),
+    hsl(360, var(--leftSaturation), var(--leftLightness))
+  );
+}
+
+.leftSaturationSliderTrack {
+  background: linear-gradient(
+    to right,
+    hsl(var(--leftHue), 0%, var(--leftLightness)),
+    hsl(var(--leftHue), 100%, var(--leftLightness))
+  );
+}
+
+.leftLightnessSliderTrack {
+  background: linear-gradient(
+    to right,
+    hsl(var(--leftHue), var(--leftSaturation), 0%),
+    hsl(var(--leftHue), var(--leftSaturation), 50%),
+    hsl(var(--leftHue), var(--leftSaturation), 100%)
+  );
+}
+
+.leftAlphaSliderTrack {
+  background: linear-gradient(
+    to right,
+    transparent,
+    hsla(var(--leftHue), var(--leftSaturation), var(--leftLightness), 1)
+  );
+}
+
+.leftHueSliderThumb,
+.leftSaturationSliderThumb,
+.leftLightnessSliderThumb {
+  background: hsl(var(--leftHue), var(--leftSaturation), var(--leftLightness));
+}
+
+.leftAlphaSliderThumb {
+  background: hsla(var(--leftHue), var(--leftSaturation), var(--leftLightness), var(--leftAlpha));
+}
+
+.rightHueSliderTrack {
+  background: repeating-linear-gradient(
+    to right,
+    hsl(var(--leftHue), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 10), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 20), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 30), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 40), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 50), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 60), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 70), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 80), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 90), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 100), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 110), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 120), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 130), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 140), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 150), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 160), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 170), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 180), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 190), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 200), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 210), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 220), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 230), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 240), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 250), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 260), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 270), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 280), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 290), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 300), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 310), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 320), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 330), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 340), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 350), var(--rightSaturation), var(--rightLightness)),
+    hsl(calc(var(--leftHue) + 360), var(--rightSaturation), var(--rightLightness)),
+    hsl(var(--leftHue), var(--rightSaturation), var(--rightLightness)) 50%
+  );
+}
+
+
+.rightSaturationSliderTrack {
+  background: repeating-linear-gradient(
+    to right,
+    hsl(calc(var(--rightHue) + var(--leftHue)), 0%, var(--rightLightness)),
+    hsl(calc(var(--rightHue) + var(--leftHue)), 100%, var(--rightLightness))
+  );
+}
+
+.rightLightnessSliderTrack {
+  background: repeating-linear-gradient(
+    to right,
+    hsl(calc(var(--rightHue) + var(--leftHue)), var(--rightSaturation), 0%),
+    hsl(calc(var(--rightHue) + var(--leftHue)), var(--rightSaturation), 50%),
+    hsl(calc(var(--rightHue) + var(--leftHue)), var(--rightSaturation), 100%)
+  );
+}
+
+.rightAlphaSliderTrack {
+  background: linear-gradient(
+    to right,
+    transparent,
+    hsla(calc(var(--rightHue) + var(--leftHue)), var(--rightSaturation), var(--rightLightness), 1)
+  );
+}
+
+.colorSlider.disabled .rightHueSliderTrack-0,
+.colorSlider.disabled .rightSaturationSliderTrack-0,
+.colorSlider.disabled .rightLightnessSliderTrack-0,
+.colorSlider.disabled .rightAlphaSliderTrack-0 {
+  background: transparent;
+}
+
+.colorSlider.disabled .rightHueSliderThumb-0,
+.colorSlider.disabled .rightSaturationSliderThumb-0,
+.colorSlider.disabled .rightLightnessSliderThumb-0,
+.colorSlider.disabled .rightAlphaSliderThumb-0 {
+  background: white;
+  outline: 1px solid black;
+  box-shadow: 0px 0px 0px 3px white;
+  transform: scale(1);
+}
+
+.rightHueSliderThumb,
+.rightSaturationSliderThumb,
+.rightLightnessSliderThumb {
+  background: hsl(calc(var(--rightHue) + var(--leftHue)), var(--rightSaturation), var(--rightLightness));
+}
+
+.rightAlphaSliderThumb {
+  background: hsla(calc(var(--rightHue) + var(--leftHue)), var(--rightSaturation), var(--rightLightness), var(--rightAlpha));
+}
+
+.rightHueSliderMark {
+  height: 4px;
+  width: 4px;
+  background: white;
+  outline: 1px solid black;
+  margin: 2px;
+  border-radius: 2px;
+  z-index: 1;
+}
