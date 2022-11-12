@@ -1,6 +1,6 @@
 # Color Palette Maker.
 
-[Color palette Maker](https://andersondematos.github.io/ColorPaletteMaker/) is a tool created to help disigners, developers, pixel artists and any kind of digital artists to create color palettes and dowload them in PNG or JSON file.
+[Color Palette Maker](https://andersondematos.github.io/ColorPaletteMaker/) is a tool created to help disigners, developers, pixel artists and any kind of digital artists to create color palettes and dowload them in PNG or JSON file.
 
 
 ## How it works.
@@ -12,7 +12,7 @@ A swatch of 5 colors going from a dark blue (H: 240, S: 100, L: 13, A: 100) to a
 <a href="https://imgur.com/E2qRcQx"><img src="https://i.imgur.com/E2qRcQx.png" title="source: imgur.com" /></a>
 
 
-And here the same same two mais colors, but with the handle on the opposite side from the center the slider:
+And here the same same two main colors, but with the handle on the opposite side from the center the slider:
 <a href="https://imgur.com/Ktvk2g2"><img src="https://i.imgur.com/Ktvk2g2.png" title="source: imgur.com" /></a>
 
 
