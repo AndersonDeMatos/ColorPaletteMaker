@@ -1,6 +1,6 @@
 # Color Palette Maker.
 
-[Color Palette Maker](https://andersondematos.github.io/ColorPaletteMaker/) is a tool created to help disigners, developers, pixel artists and any kind of digital artists to create color palettes and dowload them in PNG or JSON file.
+[Color Palette Maker](https://andersondematos.github.io/ColorPaletteMaker/) is a tool created to help designers, developers, pixel artists and any kind of digital artists to create color palettes and dowload them in PNG or JSON file.
 
 
 ## How it works.
